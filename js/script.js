@@ -1,12 +1,16 @@
-// Register GSAP Plugins
+/**
+ * An Gun Portfolio - Core Interactions
+ * Powered by GSAP, Lenis, and ScrollTrigger
+ */
+
 gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
 
-// 1. Lenis Smooth Scroll
+/* Initialize Smooth Scrolling (Lenis) */
 const lenis = new Lenis({
     duration: 1.2,
     easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
     smoothWheel: true,
-    touchMultiplier: 1.5 // Mobile touch sensitivity
+    touchMultiplier: 1.5
 });
 
 function raf(time) {
@@ -15,7 +19,7 @@ function raf(time) {
 }
 requestAnimationFrame(raf);
 
-// 2. Custom Cursor & Touch Detection
+/* Custom Cursor & Touch Detection */
 const cursor = document.querySelector('.cursor');
 const follower = document.querySelector('.cursor-follower');
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
@@ -48,7 +52,7 @@ if (!isTouchDevice) {
     });
 }
 
-// 3. Mobile Menu Toggle
+/* Mobile Navigation Controller */
 const menuToggle = document.querySelector('.menu-toggle');
 const mobileMenu = document.querySelector('.mobile-menu');
 const mobileLinks = document.querySelectorAll('.mobile-nav a');
@@ -58,7 +62,7 @@ menuToggle.addEventListener('click', () => {
     menuToggle.classList.toggle('open');
     
     if (mobileMenu.classList.contains('active')) {
-        lenis.stop(); // Prevent scrolling when menu is open
+        lenis.stop();
     } else {
         lenis.start();
     }
@@ -72,7 +76,7 @@ mobileLinks.forEach(link => {
     });
 });
 
-// 4. Hero Animations
+/* Visual Reveal - Hero Section */
 const heroTl = gsap.timeline();
 
 heroTl.from(".hero-title", {
@@ -89,7 +93,7 @@ heroTl.from(".hero-title", {
     ease: "expo.out"
 }, "-=1");
 
-// 5. Ticker Animation
+/* Infinite Marquee (Ticker) */
 gsap.to(".ticker-content", {
     xPercent: -50,
     repeat: -1,
@@ -97,10 +101,10 @@ gsap.to(".ticker-content", {
     ease: "none"
 });
 
-// 6. Text Split Animation
+/* Typography Reveal (SplitType) */
 const splitTextElements = document.querySelectorAll('.split-text');
 if (splitTextElements.length > 0) {
-    const splitText = new SplitType('.split-text', { types: 'lines, words' });
+    const splitText = new SplitType('.split-text', { types: 'words' });
     gsap.from(splitText.words, {
         scrollTrigger: {
             trigger: ".about",
@@ -115,7 +119,7 @@ if (splitTextElements.length > 0) {
     });
 }
 
-// 7. Counter Animation
+/* Dynamic Counter Animation */
 document.querySelectorAll('.counter').forEach(counter => {
     const target = +counter.getAttribute('data-target');
     ScrollTrigger.create({
@@ -132,7 +136,7 @@ document.querySelectorAll('.counter').forEach(counter => {
     });
 });
 
-// 8. Magnetic Effect (Only on Desktop)
+/* Interactive Magnetic Elements */
 if (!isTouchDevice) {
     document.querySelectorAll('.magnetic').forEach(el => {
         el.addEventListener('mousemove', (e) => {
@@ -147,7 +151,7 @@ if (!isTouchDevice) {
     });
 }
 
-// 9. Smooth Scroll
+/* Global Smooth Navigation */
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
@@ -156,7 +160,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// 10. Background Color Morphing (Gradient Scrub)
+/* Scroll-Driven Gradient Transition (Background Morphing) */
 const sections = document.querySelectorAll('section[data-bg]');
 
 sections.forEach((section, index) => {

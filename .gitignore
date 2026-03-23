@@ -1,0 +1,60 @@
+# Node.js / React
+node_modules/
+dist/
+dist-ssr/
+*.local
+coverage/
+.eslintcache
+*.tsbuildinfo
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+.venv/
+venv/
+ENV/
+.pytest_cache/
+.mypy_cache/
+.tox/
+.nox/
+.coverage
+htmlcov/
+.hypothesis/
+
+# Project-specific paths
+movie-front/node_modules/
+movie-front/dist/
+movie-back/.venv/
+
+# Environment files
+.env
+.env.local
+.env.*
+!.env.example
+
+# OS / Editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
